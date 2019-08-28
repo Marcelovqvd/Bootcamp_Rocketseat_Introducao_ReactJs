@@ -164,3 +164,74 @@ $ yarn dev --- modo de desenvolvimento
 
 $ yarn build --- modo de produção
 ```
+
+## Criando Componente Raiz
+
+No index.js importar:
+
+- React de 'react'
+
+- função render da lib 'react-dom'
+
+render() é responsável por renderizar código React dentro de conteúdo HTML
+Então todo o código React vai ser repassado para dentro da 'div id="app"
+
+#### Separando Componente
+
+Separar o componente principal da aplicação do React. Criar arquivo app.js na pasta src
+e nele, criar os componentes com a function App(). Deve-se importar React pq ele deve estar presente em todo lugar que for usar a sintaxe JSX.
+Após isso, exportar o App e importá-lo no index.js.
+
+Agora o primeiro compenente foi criado (App) e vai ser passado com o primeiro parâmetro do render().
+
+## Importando CSS
+
+Adicionar 2 loaders no webpack:
+
+```bash
+$ yarn add style-loader css-loader -D
+```
+
+E criar nova rule no webpack.config com os dois loaders:
+
+style-loader -> importa arquivos CSS. Vai transferir o arquivo CSS para o HTML dentro de uma tag <style>
+
+css-loader -> Dentro do CSS é possível ter outros imports como importação d euma imagem. Então é preciso este loader para que se entenda estes imports.
+
+Importar App.css no arquivo App.js
+
+## Importando imagem
+
+É necessário configurar mais um loader em webpack.config, que é o loader para importação de imagens.
+
+```
+$ yarn add file-loader -D
+```
+
+Configurar o loader no webpack.config;
+Criar pasta assets em src e colar as imagens dentro;
+Importar imagens em App.js:
+
+```
+import profile from './assets/profile/profile.jpg';
+
+```
+
+Aqui 'profile' é o nome da variável que recebe a imagem.
+
+Para colocar a imagem dentro do HTML - return a variável profile na function App().
+
+## Relação de pacotes, presets e bibliotecas utilizados
+
+- @babel/core
+- @babel/preset-env
+- @babel/preset-react
+- webpack
+- webpack-cli
+- react
+- react-dom
+- babel-loader
+- build
+- webpack-dev-server
+- @babel/preset-env
+- @babel/preset-react
