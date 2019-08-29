@@ -3,6 +3,7 @@
 # Introdução ao React
 
 React é uma library utilizada para construção de interfaces;
+
 Características:
 
 - Tudo fica dentro do Javascript;
@@ -46,10 +47,10 @@ $ yarn add react react-dom
 
 #### BABEL
 
-Transpila código ES¨+ e seguintes para que todos os navegadores possam interpretar
-Por ex: converte classes em sintaxe de função
+Transpila código ES6+ e seguintes para que todos os navegadores possam interpretá-los,
+por ex: converte classes em sintaxe de função
 
-babel.config.js
+Criar arquivo babel.config.js
 exportar:
 
 PRESETS:
@@ -63,7 +64,7 @@ PRESETS:
 Permite trabalhar, através do Javascript, com vários arquivos como JSON, imagens, CSS, etc.
 Além disso, todo código Javascript vai ser transpilado/convertido em um único arquivo Bundle.js com todas as informações.
 
-arquivo webpack.config.js:
+Criar arquivo webpack.config.js:
 
 - entry: seria 'src/index.js' mas no windows a barra pode não funcionar então utiliza-se o 'path' do Node;
 - output: vai ser a pasta 'public' Esta é onde vai ser jogado o bundle.js (código transpilado pelo webpack);
@@ -85,11 +86,14 @@ $ yarn add babel-loader -D
 
 o BUILD realiza a 'build' da aplicação que é converter arquivo JS em uma forma que o navegador entenda.
 
+Criar pasta src - e dentro dela o index.js que é o arquivo de entrada da aplicação.
+
 No package.json:
 
 ```bash
-"scripts": {
-    "build": "webpack --mode development"
+ "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --mode development"
   }
 ```
 
@@ -110,6 +114,7 @@ Fica na pasta public e importa o bundle.js
 ```
 
 pasta src -> armazena todo o código Javascript
+
 index.js -> arquivo de entrada da aplicação. Tudo parte dele.
 
 ## WEBPACK-DEV-SERVER
