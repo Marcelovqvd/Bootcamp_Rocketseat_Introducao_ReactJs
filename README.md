@@ -226,6 +226,47 @@ Aqui 'profile' é o nome da variável que recebe a imagem.
 
 Para colocar a imagem dentro do HTML - return a variável profile na function App().
 
+# Class Components
+
+Criar pasta component e dentro, o arquivo TechList.js;
+
+há várias formas de escrever um componente dentro do React (por ex. como função e classe). No caso vai ser escrito em formato de classe.
+
+Todo componente escirto em formato de classe precisa ter um método render(). Neste, vai se retornar o HTML.
+
+Exportar a TechList como default
+
+Importar a TechList dentro do App.js. (Aqui a lista já deve aparecer em localhost:8080).
+
+O componente foi criado.
+
+## Formato de classe
+
+Toda vez que uma variável em um componente precisar ser manipulada, ela vai se chamar 'state'.
+
+estado
+
+O 'state' vai ser armazenado na classe através da variável:
+
+```
+state = {};
+
+```
+
+Então quando se guarda e manipula informações no componente, utiliza-se classes e o state, que é o estado do componente.
+
+Dentro do state vai se guardar todas as informações que podem ser manipuladas por esse componente.
+
+Dentro de estado, criar as variáveis
+
+Porém o Babel não entende propriedades que são definidas diretamente dentro da classe (era esperado que se tivesse estas variáveis dentro de um constructor). Mas, para usar a sintaxe da aula, que é uma sintaxe mais resumida, é necessária a instalação de outro plugin do Babel.
+
+    $ yarn add @babel/plugin-proposal-class-properties -D
+
+Configurar em babel.config.js. Agora o componente já é capaz de entender a variável state.
+
+Agora é possível manipular o state via componente.
+
 ## Relação de pacotes, presets e bibliotecas utilizados
 
 - @babel/core
