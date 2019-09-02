@@ -269,6 +269,15 @@ Agora é possível manipular o state via componente.
 
 # Estado e Imutabilidade
 
+Listar e adicionar itens no state. Controlar o state, que é imutável. Sempre que o state muda, o render() executa. Então
+em TechList.js vamos percorrer o array Techs que está no state. Para escrever código javascript dentro do render() abrir chaves ex.
+
+```
+{this.state.techs.map(tech => <li key="Tech">{tech }</li>)}
+```
+
+Aqui, cada item precisa ter a propriedade key
+
 Em TechList.js, remover as <li> feitas na aula passada;
 
 Dentro da <ul> abre-se chaves para poder adicionar código javascript. Então vai se percorrer o array de tecnologias utilizando o 'map'. Agora, para cada tecnologia é possível retornar uma <li> com conteúdo JSX.
@@ -277,8 +286,10 @@ Mas sempre que se faz uma iteração, cada elemento precisa ter uma propriedade 
 
      <li key={} >
 
-Agora é preciso permitir que o usuário adicione novos itens dentro do estado. Vamos usar um input de texto.Mas o React não permite que se adicione dois ou mais elementos sem ter um container em volta deles.
-Então, para não ter q usar uma div como container, vamos usar uma tag chamada 'fragment' que é uma tag sem nome.
+2`02`` Permitir que op usuário adicione novos itens dentro do state
+
+Vamos usar um input de texto. Mas o React não permite que se adicione dois ou mais elementos sem ter um container em volta deles.
+Então, para não ter q usar uma div (q pode atrapalhar na questão da estilização) como container, vamos usar uma tag chamada 'fragment' que é uma tag sem nome.
 
 #### fragment
 
@@ -288,26 +299,35 @@ Então, para não ter q usar uma div como container, vamos usar uma tag chamada 
 
 Agora é possível criar o input.
 
-Temos que pegar o valor q o usuáro insere no input. Para isso vamos anotar o valor conforme o usuário vai digitando.
+3`20`` Temos que pegar o valor q o usuáro insere no input. Para isso vamos anotar o valor conforme o usuário vai digitando.
 
 Então dentro do state criar uma nova propriedade que vai armazenar o valor que o usuário está digitando dentro do input:
 
     newTech = '',
 
-E um método handleInputChange no formato de arrow function
+E um método handleInputChange() no formato de arrow function
 'e.target.value' pega o valor do input
 
 Para armazenar o valor dentro do state. A função precisa ser no formato de arrow pq senão não consegue acessar o 'this'.
 
-## Imutabilidade 5`40``
+```
+<input type="text" onChange={this.handleInputChange()} />
 
-O React possui um conceito de inutabilidade dentro do state. A variável state é imutável. Para criar ou alterar state é preciso usar a função setState().
+```
+
+4`50`` Toda função criada dentro do componente precisa ser arrow function para poder ter acesso ao this.
+
+### Imutabilidade 5`40``
+
+O React possui um conceito de inutabilidade dentro do state. A variável state é imutável. Sempre que for criar ou alterar estado no React é preciso usar a função (criar ou alterar state) é preciso usar a função setState().
+
+Com ela, se o state muda, o render() executa automaticamente.
 
 #### setState()
 
 Dentro dela se passa o objeto. Agora, qualquer mudança no state, o render vai executar automaticamente. Agora o texto preenchido no input está guardado na variável 'newTech'.
 
-Botão para que se adicione o texto digitado no input que está guardado na variável newTech dentro das 'techs'. Parta isso criar método handleSubmit que vai receber um evento.
+07`40`` Botão para que se adicione o texto digitado no input que está guardado na variável newTech dentro da lista 'techs'. Para isso, criar método handleSubmit() que vai receber um evento.
 
 Para este evento, substituir o 'fragment' por '<form>' com o event onsubmit que vai chamar o this.handlesubmit. Este formulário precisa ser disparado pelo 'button type submit' => Enviar.
 
@@ -317,7 +337,25 @@ A funcionalidade padrão de um form é atualizar a tela qdo clica em button. Ent
 Então deve-se usar o método setState(). É preciso recriar o array do zero, pois não é possível fazer alterações.
 É a imutabilidade no state. Utilizar o spread operator para copiar o array Techs.
 
-Para limpar o input é só criar a variável vazia newTech: '';
+12`00`` Para limpar o input é só criar a variável vazia newTech: '';
+
+## Removendo itens do estado
+
+Adiciona no form um button para remover item com o evento onClick para chamar handleDelete()
+
+<button onClick={this.handleDelete(tech)}> assim não dá certo pq a função já está sendo chamada.
+
+Então o correto é:
+
+```
+<button onClick={() => this.handleDelete(tech)}>
+
+Atualizar o state removendo o parâmetro (tech) em handleDelete(tech).
+
+handleDelete = (tech) => {
+  this.setState({ techs: this.state.techs.filter( t => t !== tech)})
+}
+
 
 ## Relação de pacotes, presets e bibliotecas utilizados
 
@@ -333,3 +371,4 @@ Para limpar o input é só criar a variável vazia newTech: '';
 - webpack-dev-server
 - @babel/preset-env
 - @babel/preset-react
+```
