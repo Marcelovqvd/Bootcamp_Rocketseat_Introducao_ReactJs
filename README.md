@@ -267,6 +267,58 @@ Configurar em babel.config.js. Agora o componente já é capaz de entender a var
 
 Agora é possível manipular o state via componente.
 
+# Estado e Imutabilidade
+
+Em TechList.js, remover as <li> feitas na aula passada;
+
+Dentro da <ul> abre-se chaves para poder adicionar código javascript. Então vai se percorrer o array de tecnologias utilizando o 'map'. Agora, para cada tecnologia é possível retornar uma <li> com conteúdo JSX.
+
+Mas sempre que se faz uma iteração, cada elemento precisa ter uma propriedade 'key'que recebe um valor único de cada um destes elementos.
+
+     <li key={} >
+
+Agora é preciso permitir que o usuário adicione novos itens dentro do estado. Vamos usar um input de texto.Mas o React não permite que se adicione dois ou mais elementos sem ter um container em volta deles.
+Então, para não ter q usar uma div como container, vamos usar uma tag chamada 'fragment' que é uma tag sem nome.
+
+#### fragment
+
+    <>
+       elementos
+    </>
+
+Agora é possível criar o input.
+
+Temos que pegar o valor q o usuáro insere no input. Para isso vamos anotar o valor conforme o usuário vai digitando.
+
+Então dentro do state criar uma nova propriedade que vai armazenar o valor que o usuário está digitando dentro do input:
+
+    newTech = '',
+
+E um método handleInputChange no formato de arrow function
+'e.target.value' pega o valor do input
+
+Para armazenar o valor dentro do state. A função precisa ser no formato de arrow pq senão não consegue acessar o 'this'.
+
+## Imutabilidade 5`40``
+
+O React possui um conceito de inutabilidade dentro do state. A variável state é imutável. Para criar ou alterar state é preciso usar a função setState().
+
+#### setState()
+
+Dentro dela se passa o objeto. Agora, qualquer mudança no state, o render vai executar automaticamente. Agora o texto preenchido no input está guardado na variável 'newTech'.
+
+Botão para que se adicione o texto digitado no input que está guardado na variável newTech dentro das 'techs'. Parta isso criar método handleSubmit que vai receber um evento.
+
+Para este evento, substituir o 'fragment' por '<form>' com o event onsubmit que vai chamar o this.handlesubmit. Este formulário precisa ser disparado pelo 'button type submit' => Enviar.
+
+A funcionalidade padrão de um form é atualizar a tela qdo clica em button. Então - prevent.default() no handleSubmit;
+
+9`20`` Colocar a vairável no state. Não é possível push() pq não pode sofrer mutação.
+Então deve-se usar o método setState(). É preciso recriar o array do zero, pois não é possível fazer alterações.
+É a imutabilidade no state. Utilizar o spread operator para copiar o array Techs.
+
+Para limpar o input é só criar a variável vazia newTech: '';
+
 ## Relação de pacotes, presets e bibliotecas utilizados
 
 - @babel/core
