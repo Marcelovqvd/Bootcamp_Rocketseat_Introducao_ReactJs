@@ -1,7 +1,5 @@
 # Bootcamp Rocketseat - agosto de 2019
 
-mudou
-
 # Introdução ao React
 
 React é uma library utilizada para construção de interfaces;
