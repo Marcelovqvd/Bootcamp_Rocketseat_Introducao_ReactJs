@@ -347,17 +347,74 @@ Adiciona no form um button para remover item com o evento onClick para chamar ha
 
 Então o correto é:
 
-```
 <button onClick={() => this.handleDelete(tech)}>
 
 Atualizar o state removendo o parâmetro (tech) em handleDelete(tech).
 
 handleDelete = (tech) => {
-  this.setState({ techs: this.state.techs.filter( t => t !== tech)})
+this.setState({ techs: this.state.techs.filter( t => t !== tech)})
 }
 
+# Propriedades do React
 
-## Relação de pacotes, presets e bibliotecas utilizados
+criar src/components/TechItem.js
+
+Em src/components/TechItem.js:
+
+return li do render() do src/components/TechList.js
+
+Em src/components/TechList.js importar TechItem.js e inserir a tag TechItem onde estava o LI
+
+Este processo gera alguns erros. 1`20`` correção dos erros.
+Foi colocado um componente dentro de outro e então não consegue enxergar as variáveis
+
+## Conceito de Propriedade
+
+Propriedade é que se passa para o componente dentro da tag.
+
+No render render() do src/components/TechList.js há a tag <TechItem> (componente TechItem.js). Nela foi passada a propriedade 'tech'
+
+    <ul>
+       {this.state.techs.map(tech => <TechItem key={tech} tech={tech} />)}
+    </ul>
+
+Para passar essa informação para dentro do componente TechItem.js deve-se colocá-la como parâmetro do componente function TechItem
+
+    function TechItem(props)
+       return {props.tech}
+
+com a desestruturação:
+
+    function TechItem({ tech })
+       return { tech }
+
+Se este componente fosse em formato de classe (e não de função) as propriedades ficariam em this.props.tech.
+
+Como se trata de formato de função, é possível acessar por meio dos parâmetros
+
+A funcção handleDelete() usada para remover itens está sendo chamada dentro de TechItem.js
+
+Mas ela não está dentro deste componente. Ela deve ficar dentro de TechList pq é onde está o state. Então a função handleDelete vai ser passada como propriedade da tag TechItem.
+
+    <ul>
+       {this.state.techs.map(tech => <TechItem key={tech} tech={tech} onDelete={() => this.handleDelete(tech)} />)}
+    </ul>
+
+Neste caso a propriedade que se está passando é uma função. Vai recebê-la em TechItem.js
+
+    function TechItem({ tech })
+      return { tech, onDelete }
+
+Coincluindo:
+Quando se cria um componente, as funções usadas para manipular o state precisam ficar no mesmo componente em que o state está.
+
+Como o state não está dentro de TechItem.js foi passada para o TechItem a função handleDelete como propriedade e a utilizamos dentro de button onClick = {onDelete}
+
+Então a função está sendo passada como propriedade.
+
+No React podemos passar qualquer informação como propriedade de um componente ( função, objeto. classe, outro componente).
+
+## Pacotes, presets e bibliotecas utilizados
 
 - @babel/core
 - @babel/preset-env
@@ -371,4 +428,3 @@ handleDelete = (tech) => {
 - webpack-dev-server
 - @babel/preset-env
 - @babel/preset-react
-```
