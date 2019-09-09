@@ -454,3 +454,26 @@ Deve ser importada no componente.
         propriedade: Proptypes.string.isRequired,
         nome da função: Proptypes.func.isRequired
      }
+
+# Ciclo de vida do componente
+
+É todo o ciclo no qual o componente aparece na tela, é ou não modificado/atualizado e pode deixar de existir
+
+O ciclo aparece em alguns métodos:
+
+- componentDidMouth() é executado quando o componente aparece em tela. Executa um código no momento em que um componente aparece em tela. Por ex. um componente que busca dados de uma api externa assim que ele é exibido em tela.
+
+- componentDidUpdate() é executado sempre que houver alterações nas props ou estado dos componentes. recebe as propriedades e o state antigos como parâmetros
+
+- componentWillUnmouth() é executado quando o componente deixa de existir.
+
+#### Salvando dados no storage do navegador
+
+3`00``
+Salvar a listagem de tecnologias que o usuário adicionar em sua lista para dentro do localStorage do navegador (bando de dados do navegador).
+
+O objetivo da aula é fazer com que toda vez que houver uma lateração no state de tecnologias, salvar no localStorage.
+
+Vai fazer uma verificação no componentDidUpdate() pois este método executa sempre que houver qualquer modificação no state. V. aba Application no console do navegador.
+
+O localStorage não aceita arrays. Por isso passar stringfy no JSON.
