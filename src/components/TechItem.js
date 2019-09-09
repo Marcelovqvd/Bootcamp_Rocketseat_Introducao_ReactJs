@@ -9,4 +9,13 @@ function TechItem({ tech, onDelete }) {
   );
 }
 
+TechItem.defaultProps = {
+  tech: 'Oculto',
+}
+
+TechItem.propTypes = {
+  tech: PropTypes.string,
+  onDelete: PropTypes.func.isRequired,
+};
+
 export default TechItem;

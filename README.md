@@ -414,17 +414,43 @@ Então a função está sendo passada como propriedade.
 
 No React podemos passar qualquer informação como propriedade de um componente ( função, objeto. classe, outro componente).
 
-## Pacotes, presets e bibliotecas utilizados
+# Default Props & PropTypes
 
-- @babel/core
-- @babel/preset-env
-- @babel/preset-react
-- webpack
-- webpack-cli
-- react
-- react-dom
-- babel-loader
-- build
-- webpack-dev-server
-- @babel/preset-env
-- @babel/preset-react
+Passar a uma propriedade o valor de default ou um valor qualquer para o caso de o usuário não defini-la. Isso pode ser feito passando o valor no parâmetro da função (para componentes em formato de função).
+
+Há também uma forma 'global' que se chama 'Default Props'.
+
+#### 'Default Props'
+
+Basta dar a um componente (função ou classe)
+
+ex.
+
+    function TechItem({ tech} ) {}
+
+    TechItem.defaultProps = {
+      tech: 'Oculto',
+    };
+
+Isto quer dizer que quando o tech não for informado ele fica como'Oculto'.
+
+Para definir as defaultProps de uma classe é possível fazer dentro dela:
+
+    static defaultProps = {
+     propriedade: 'Oculto'
+    };
+
+#### PropTypes
+
+É uma forma de validar as propriedades que o componente recebe. O React pode infromar ao desenvolvedor que ele está passando uma propriedade em um tipo que não é correto. ex. passar uma string no lugar de uma função.
+
+Para isso tem que instalar a lib.
+
+    $ yarn add prop-types
+
+Deve ser importada no componente.
+
+     TechItem.propTypes = {
+        propriedade: Proptypes.string.isRequired,
+        nome da função: Proptypes.func.isRequired
+     }
