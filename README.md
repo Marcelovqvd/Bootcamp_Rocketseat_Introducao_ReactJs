@@ -477,3 +477,9 @@ O objetivo da aula é fazer com que toda vez que houver uma lateração no state
 Vai fazer uma verificação no componentDidUpdate() pois este método executa sempre que houver qualquer modificação no state. V. aba Application no console do navegador.
 
 O localStorage não aceita arrays. Por isso passar stringfy no JSON.
+
+# Debugando React com DevTools
+
+instalar 'React Developer Tools' no Chrome
+
+No console do chrome há uma aba chamada React. Lá são mostrados os componentes React. É possível inspecionar cada componente e ver seu state e suas propriedades em tempo real
